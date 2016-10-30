@@ -1,0 +1,24 @@
+version: '2'
+services:
+  web:
+    image: nginx:1.10.1-alpine
+    environment:
+      VIRTUAL_HOST: web.wordpressmigrationqueries.dev
+    links:
+      - php
+    networks:
+      - my-network
+    volumes:
+      - ".:/app"
+      - "./docker/nginx/wordpress-migration-queries.conf:/etc/nginx/conf.d/wordpress-migration-queries.conf"
+  php:
+    image: php:7.0.12-fpm-alpine
+    networks:
+      - my-network
+    volumes:
+      - ".:/app"
+networks:
+  my-network:
+    external:
+      name: my-network
+
