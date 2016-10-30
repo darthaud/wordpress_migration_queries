@@ -2,6 +2,10 @@
 
 function get_queries()
 {
+	if (empty($_POST['old_url']) || empty($_POST['new_url'])) {
+		return array();
+	}
+
 	$old_url = $_POST['old_url'];
 	$new_url = $_POST['new_url'];
 
